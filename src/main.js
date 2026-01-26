@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { Timer } from "three";
 
-// console.log('hello')
 const scene = new THREE.Scene();
 const textureLoader = new THREE.TextureLoader();
 
@@ -75,6 +74,29 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 camera.position.z = 4;
+
+// star
+
+const starGeomtry = new THREE.BufferGeometry();
+
+const count = 500;
+
+const positions = new Float32Array(count * 3);
+
+for (let i = 0; i < count * 3; i++) {
+	positions[i] = (Math.random() - 0.5) * 30;
+}
+
+starGeomtry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+const starMaterail = new THREE.PointsMaterial({
+	size: 0.02,
+	sizeAttenuation: true,
+});
+
+const star = new THREE.Points(starGeomtry, starMaterail);
+
+scene.add(star);
 
 window.addEventListener("resize", () => {
 	sizes.width = innerWidth;
