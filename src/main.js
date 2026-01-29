@@ -90,8 +90,8 @@ for (let i = 0; i < count * 3; i++) {
 starGeomtry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
 const starMaterail = new THREE.PointsMaterial({
-	size: 0.02,
-	sizeAttenuation: true,
+	size: 0.9,
+	sizeAttenuation: false,
 });
 
 const star = new THREE.Points(starGeomtry, starMaterail);
@@ -151,6 +151,9 @@ const tick = () => {
 	const moonAngle = elapsedTime;
 	moon.position.x = Math.cos(moonAngle) * 1.2;
 	moon.position.z = Math.sin(moonAngle) * 1.2;
+
+	star.rotation.x += 0.0002
+	star.rotation.y += 0.0002
 
 	control.update();
 	renderer.setSize(sizes.width, sizes.height);
